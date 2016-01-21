@@ -1,2 +1,2 @@
-/root/labCode/lab2/mymod.ko
-/root/labCode/lab2/mymod.o
+/root/labcode/lab2/mymod.ko
+/root/labcode/lab2/mymod.o

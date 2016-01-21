@@ -50,7 +50,7 @@ int kyouko3_release(struct inode *inode, struct file *fp){
 
 int kyouko3_mmap(struct file *filp, struct vm_area_struct *vma){
 	int ret;
-	ret = remap_pfn_range(vma, vma->vm_start, kyouko3.p_control_base>>PAGE_SHIFT, (unsigned long)(vma->vm_end-vma->vm_start), vma->vm_page_prot);
+	ret = remap_pfn_range(vma, vma->vm_start, (unsigned int)(kyouko3.p_control_base)>>PAGE_SHIFT, (unsigned long)(vma->vm_end-vma->vm_start), vma->vm_page_prot);
 	return ret;
 									                          
 }

@@ -1,24 +1,11 @@
 #include <linux/init.h>
-#include <linux/miscdevice.h>  
-#include <linux/delay.h>  
 #include <linux/kernel.h>  
 #include <linux/module.h>  
-#include <linux/init.h>  
 #include <linux/mm.h>  
 #include <linux/fs.h>  
-#include <linux/types.h>  
-#include <linux/delay.h>  
-#include <linux/moduleparam.h>  
-#include <linux/slab.h>  
-#include <linux/errno.h>  
 #include <linux/ioctl.h>  
 #include <linux/cdev.h>  
-#include <linux/string.h>  
-#include <linux/list.h>  
-#include <linux/pci.h>  
-#include <linux/gpio.h> 
 #include <linux/pci.h>
-
 
 MODULE_LICENSE("Proprietarty");
 MODULE_AUTHOR("Mickey Mouse");
@@ -63,7 +50,7 @@ int kyouko3_release(struct inode *inode, struct file *fp){
 
 int kyouko3_mmap(struct file *filp, struct vm_area_struct *vma){
 	int ret;
-	ret = ret = remap_pfn_range(vma, vma->vm_start, vma->vm_pgoff, (unsigned long)(vma->vm_end-vma->vm_start), vma->vm_page_prot);
+	ret = remap_pfn_range(vma, vma->vm_start, ((int)kyouko3.p_control_base)>>PAGE_SHIFT, (unsigned long)(vma->vm_end-vma->vm_start), vma->vm_page_prot);
 	return ret;
 									                          
 }
